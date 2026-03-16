@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Point_of_Sales.MVVM.ViewModels"
+             x:Class="Point_of_Sales.MVVM.Views.LoginPage"
+             BackgroundColor="#F7F8FA">
+
+    <Grid>
+
+        <AbsoluteLayout InputTransparent="True">
+            <!-- Top-right violet bubble -->
+            <BoxView AbsoluteLayout.LayoutBounds="1.08, -0.03, 230, 230"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#EDE7F6" CornerRadius="115" />
+            <BoxView AbsoluteLayout.LayoutBounds="0.90, 0.08, 110, 110"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#D1C4E9" CornerRadius="55" />
+            <!-- Bottom-left orange bubble -->
+            <BoxView AbsoluteLayout.LayoutBounds="-0.06, 1.04, 190, 190"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#FFF3E0" CornerRadius="95" />
+            <BoxView AbsoluteLayout.LayoutBounds="-0.06, 0.88, 90, 90"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#FFE0B2" CornerRadius="45" />
+            <!-- Violet accent line -->
+            <BoxView AbsoluteLayout.LayoutBounds="0.0, 0.42, 70, 3"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#7B2FBE" />
+        </AbsoluteLayout>
+     
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Padding="32,56,32,40" Spacing="0" VerticalOptions="Center">
+
+                <!-- ── Logo + Brand Block ── -->
+                <VerticalStackLayout Spacing="4" Margin="0,0,0,36" HorizontalOptions="Start">
+
+                    <!-- Logo image -->
+                    <Image Source="shoepair_logo.png"
+                           HeightRequest="72"
+                           WidthRequest="72"
+                           HorizontalOptions="Start"
+                           Aspect="AspectFit"
+                           Margin="0,0,0,14" />
+
+                    <Label Text="WELCOME BACK" FontSize="11" FontAttributes="Bold"
+                           CharacterSpacing="4" TextColor="#7B2FBE" HorizontalOptions="Start" />
+                    <Label FontSize="34" FontAttributes="Bold"
+                           TextColor="#1A1A1A" HorizontalOptions="Start">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Sign " TextColor="#1A1A1A" FontSize="34" FontAttributes="Bold"/>
+                                <Span Text="In" TextColor="#FF8C00" FontSize="34" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Access your point of sale dashboard"
+                           FontSize="13" TextColor="#9E9E9E"
+                           HorizontalOptions="Start" Margin="0,4,0,0" />
+                </VerticalStackLayout>
+
+                <!-- ── Input Card ── -->
+                <Border BackgroundColor="White"
+                        StrokeShape="RoundRectangle 20"
+                        Stroke="#EBEBEB" StrokeThickness="1.5"
+                        Padding="24,28" Margin="0,0,0,20">
+                    <Border.Shadow>
+                        <Shadow Brush="#000000" Offset="0,4" Radius="20" Opacity="0.07" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Spacing="20">
+
+                        <!-- Username -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="USERNAME" FontSize="10" FontAttributes="Bold"
+                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Border BackgroundColor="#F7F8FA"
+                                    StrokeShape="RoundRectangle 12"
+                                    Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <Label Grid.Column="0" Text="👤" FontSize="16"
+                                           VerticalOptions="Center" TextColor="#BDBDBD" />
+                                    <Entry Grid.Column="1"
+                                           Placeholder="Enter your username"
+                                           PlaceholderColor="#BDBDBD"
+                                           Text="{Binding Username}"
+                                           TextColor="#1A1A1A"
+                                           BackgroundColor="Transparent"
+                                           HeightRequest="52" FontSize="15" />
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Password -->
+                        <VerticalStackLayout Spacing="8">
+                            <Label Text="PASSWORD" FontSize="10" FontAttributes="Bold"
+                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Border BackgroundColor="#F7F8FA"
+                                    StrokeShape="RoundRectangle 12"
+                                    Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
+                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <Label Grid.Column="0" Text="🔒" FontSize="16"
+                                           VerticalOptions="Center" TextColor="#BDBDBD" />
+                                    <Entry Grid.Column="1"
+                                           Placeholder="Enter your password"
+                                           PlaceholderColor="#BDBDBD"
+                                           Text="{Binding Password}"
+                                           IsPassword="True"
+                                           TextColor="#1A1A1A"
+                                           BackgroundColor="Transparent"
+                                           HeightRequest="52" FontSize="15" />
+                                </Grid>
+                            </Border>
+                        </VerticalStackLayout>
+
+                        <!-- Forgot Password -->
+                        <Label Text="Forgot password?"
+                               FontSize="12" FontAttributes="Bold"
+                               TextColor="#FF8C00"
+                               HorizontalOptions="End" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <!-- ── Login Button ── -->
+                <Button Text="LOGIN "
+                        Command="{Binding LoginCommand}"
+                        BackgroundColor="#7B2FBE"
+                        TextColor="White"
+                        FontAttributes="Bold"
+                        FontSize="15"
+                        CharacterSpacing="1"
+                        CornerRadius="14"
+                        HeightRequest="56"
+                        Margin="0,0,0,12"
+                        Clicked="Button_Clicked">
+                    <Button.Shadow>
+                        <Shadow Brush="#7B2FBE" Offset="0,6" Radius="16" Opacity="0.30" />
+                    </Button.Shadow>
+                </Button>
+
+                <!-- ── Loading ── -->
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                                   IsVisible="{Binding IsBusy}"
+                                   Color="#7B2FBE" Margin="0,4,0,0" />
+
+                <!-- ── Divider ── -->
+                <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="12"
+                      Margin="0,24,0,20" VerticalOptions="Center">
+                    <BoxView Grid.Column="0" HeightRequest="1" Color="#E0E0E0" VerticalOptions="Center" />
+                    <Label Grid.Column="1" Text="OR" FontSize="11"
+                           CharacterSpacing="2" TextColor="#BDBDBD" VerticalOptions="Center" />
+                    <BoxView Grid.Column="2" HeightRequest="1" Color="#E0E0E0" VerticalOptions="Center" />
+                </Grid>
+
+                <!-- ── Sign Up ── -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                    <Label Text="Don't have an account?"
+                           FontSize="13" TextColor="#9E9E9E" VerticalOptions="Center" />
+                    <Button Text="SIGN UP" FontSize="13" FontAttributes="Bold"
+                           TextColor="#FF8C00" VerticalOptions="Center" CharacterSpacing="1"
+                            BackgroundColor="Transparent"
+                            Clicked="Button_Clicked_1"/>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

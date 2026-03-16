@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Point_of_Sales.MVVM.ViewModels"
+             x:Class="Point_of_Sales.MVVM.Views.UserManagement"
+             BackgroundColor="#F7F8FA"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto">
+
+        <AbsoluteLayout Grid.RowSpan="3" InputTransparent="True">
+            <!-- Top-right violet -->
+            <BoxView AbsoluteLayout.LayoutBounds="1.07, -0.01, 190, 190"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#EDE7F6" CornerRadius="95" />
+            <BoxView AbsoluteLayout.LayoutBounds="0.87, 0.07, 85, 85"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#D1C4E9" CornerRadius="42" />
+            <!-- Bottom-left orange -->
+            <BoxView AbsoluteLayout.LayoutBounds="-0.06, 0.97, 150, 150"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#FFF3E0" CornerRadius="75" />
+            <BoxView AbsoluteLayout.LayoutBounds="-0.06, 0.50, 55, 55"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#FFE0B2" CornerRadius="28" />
+            <!-- Violet accent line -->
+            <BoxView AbsoluteLayout.LayoutBounds="1.0, 0.38, 3, 48"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     Color="#7B2FBE" />
+        </AbsoluteLayout>
+
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto"
+              Padding="20,52,20,16">
+
+           
+
+            <!-- Logo + Brand -->
+            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center"
+                                   Spacing="8" VerticalOptions="Center">
+                <Image Source="shoepair_logo.png"
+                       HeightRequest="32" WidthRequest="32"
+                       Aspect="AspectFit" VerticalOptions="Center" />
+                <Label VerticalOptions="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Shoe" FontSize="17" FontAttributes="Bold" TextColor="#1A1A1A" />
+                            <Span Text="Pair" FontSize="17" FontAttributes="Bold" TextColor="#FF8C00" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </HorizontalStackLayout>
+
+
+            
+        </Grid>
+
+        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+            <VerticalStackLayout Padding="20,8,20,24" Spacing="0">
+
+                <!-- ── Page Title ── -->
+                <VerticalStackLayout Spacing="2" Margin="0,0,0,24">
+                    <Label Text="USER MANAGEMENT" 
+                           FontSize="10" 
+                           FontAttributes="Bold"
+                           CharacterSpacing="3" 
+                           TextColor="#7B2FBE" />
+                    
+                    <Label FontSize="28" FontAttributes="Bold">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Dashboard" TextColor="#1A1A1A" FontSize="28" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+
+                <!-- ── Quick Action Buttons ── -->
+                <Border BackgroundColor="White"
+                        StrokeShape="RoundRectangle 18"
+                        Stroke="#EBEBEB" StrokeThickness="1.5"
+                        Padding="16,20" Margin="0,0,0,28">
+                    <Border.Shadow>
+                        <Shadow Brush="#000000" Offset="0,4" Radius="16" Opacity="0.06" />
+                    </Border.Shadow>
+                    <Grid ColumnDefinitions="*,*,*,*" ColumnSpacing="8">
+
+                        <!-- Transfer -->
+                        <VerticalStackLayout Grid.Column="0" Spacing="8" HorizontalOptions="Center">
+                            <Border BackgroundColor="#F7F8FA"
+                                    StrokeShape="RoundRectangle 14"
+                                    Stroke="#E0E0E0" 
+                                    StrokeThickness="1.5"
+                                    WidthRequest="52" 
+                                    HeightRequest="52">
+                                <Label Text="⇄" FontSize="22" 
+                                       TextColor="#7B2FBE"
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="Transfer" 
+                                   FontSize="11" 
+                                   TextColor="#9E9E9E"
+                                   HorizontalOptions="Center" 
+                                   CharacterSpacing="0.2" />
+                        </VerticalStackLayout>
+
+                        <!-- Request -->
+                        <VerticalStackLayout Grid.Column="1" Spacing="8" HorizontalOptions="Center">
+                            <Border BackgroundColor="#F7F8FA"
+                                    StrokeShape="RoundRectangle 14"
+                                    Stroke="#E0E0E0" StrokeThickness="1.5"
+                                    WidthRequest="52" HeightRequest="52">
+                                <Label Text="💳" 
+                                       FontSize="20"
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="Request" 
+                                   FontSize="11" 
+                                   TextColor="#9E9E9E"
+                                   HorizontalOptions="Center"
+                                   CharacterSpacing="0.2" />
+                        </VerticalStackLayout>
+
+                        <!-- Send (active) -->
+                        <VerticalStackLayout Grid.Column="2" Spacing="8" HorizontalOptions="Center">
+                            <Border BackgroundColor="#7B2FBE"
+                                    StrokeShape="RoundRectangle 14"
+                                    Stroke="Transparent"
+                                    WidthRequest="52" HeightRequest="52">
+                                <Border.Shadow>
+                                    <Shadow Brush="#7B2FBE" Offset="0,4" Radius="10" Opacity="0.35" />
+                                </Border.Shadow>
+                                <Label Text="👥" FontSize="20"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="Send" 
+                                   FontSize="11" 
+                                   FontAttributes="Bold"
+                                   TextColor="#7B2FBE"
+                                   HorizontalOptions="Center" 
+                                   CharacterSpacing="0.2" />
+                        </VerticalStackLayout>
+
+                        <!-- Voucher -->
+                        <VerticalStackLayout Grid.Column="3" Spacing="8" HorizontalOptions="Center">
+                            <Border BackgroundColor="#FFF3E0"
+                                    StrokeShape="RoundRectangle 14"
+                                    Stroke="#FFE0B2" StrokeThickness="1.5"
+                                    WidthRequest="52" HeightRequest="52">
+                                <Label Text="🏷" 
+                                       FontSize="20"
+                                       HorizontalOptions="Center" 
+                                       VerticalOptions="Center" />
+                            </Border>
+                            <Label Text="Voucher" 
+                                   FontSize="11" 
+                                   TextColor="#FF8C00"
+                                   FontAttributes="Bold"
+                                   HorizontalOptions="Center" 
+                                   CharacterSpacing="0.2" />
+                        </VerticalStackLayout>
+
+                    </Grid>
+                </Border>
+
+                <!-- ── Section Header ── -->
+                <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,14">
+                    <VerticalStackLayout Grid.Column="0" Spacing="2">
+                        <Label Text="RECENT TRANSACTIONS" 
+                               FontSize="10" 
+                               FontAttributes="Bold"
+                               CharacterSpacing="2" 
+                               TextColor="#7B2FBE" />
+                        <Label Text="Recently Transaction" 
+                               FontSize="18"
+                               FontAttributes="Bold" 
+                               TextColor="#1A1A1A" />
+                    </VerticalStackLayout>
+                    <Border Grid.Column="1"
+                            BackgroundColor="#FFF3E0"
+                            StrokeShape="RoundRectangle 8"
+                            Stroke="Transparent"
+                            Padding="12,6" VerticalOptions="End">
+                        <Label Text="See all" 
+                               FontSize="12" 
+                               TextColor="#FF8C00" 
+                               FontAttributes="Bold" />
+                    </Border>
+                </Grid>
+
+                <!-- ── Transaction List ── -->
+                <VerticalStackLayout Spacing="10">
+
+                    <!-- Item 1 – Pending -->
+                    <Border BackgroundColor="White"
+                            StrokeShape="RoundRectangle 14"
+                            Stroke="#EBEBEB" StrokeThickness="1.5"
+                            Padding="16,14">
+                        <Border.Shadow>
+                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
+                        </Border.Shadow>
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border Grid.Column="0" BackgroundColor="#EDE7F6"
+                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
+                                    WidthRequest="44" HeightRequest="44">
+                                <Label Text="EF" FontSize="14" FontAttributes="Bold"
+                                       TextColor="#7B2FBE"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                <Label Text="Edge Flores" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
+                                <Label Text="05 Jan 2024" FontSize="11" TextColor="#9E9E9E" />
+                            </VerticalStackLayout>
+                            <Border Grid.Column="2" BackgroundColor="#FFF8E1"
+                                    StrokeShape="RoundRectangle 8" Stroke="Transparent"
+                                    Padding="10,5" VerticalOptions="Center">
+                                <Label Text="Pending" FontSize="11" TextColor="#FF8C00" FontAttributes="Bold" />
+                            </Border>
+                        </Grid>
+                    </Border>
+
+                    <!-- Item 2 -->
+                    <Border BackgroundColor="White"
+                            StrokeShape="RoundRectangle 14"
+                            Stroke="#EBEBEB" StrokeThickness="1.5"
+                            Padding="16,14">
+                        <Border.Shadow>
+                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
+                        </Border.Shadow>
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border Grid.Column="0" BackgroundColor="#E3F2FD"
+                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
+                                    WidthRequest="44" HeightRequest="44">
+                                <Label Text="ST" FontSize="14" FontAttributes="Bold"
+                                       TextColor="#1E88E5"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                <Label Text="Samler Telebangco" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
+                                <Label Text="04 Feb 2024" FontSize="11" TextColor="#9E9E9E" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="+$300.00"
+                                   FontSize="14" FontAttributes="Bold"
+                                   TextColor="#7B2FBE" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
+                    <!-- Item 3 -->
+                    <Border BackgroundColor="White"
+                            StrokeShape="RoundRectangle 14"
+                            Stroke="#EBEBEB" StrokeThickness="1.5"
+                            Padding="16,14">
+                        <Border.Shadow>
+                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
+                        </Border.Shadow>
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border Grid.Column="0" BackgroundColor="#FCE4EC"
+                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
+                                    WidthRequest="44" HeightRequest="44">
+                                <Label Text="JC" FontSize="14" FontAttributes="Bold"
+                                       TextColor="#E91E63"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                <Label Text="Jemar Caliguid" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
+                                <Label Text="04 Feb 2024" FontSize="11" TextColor="#9E9E9E" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="-$300.00"
+                                   FontSize="14" FontAttributes="Bold"
+                                   TextColor="#E53935" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
+                    <!-- Item 4 -->
+                    <Border BackgroundColor="White"
+                            StrokeShape="RoundRectangle 14"
+                            Stroke="#EBEBEB" StrokeThickness="1.5"
+                            Padding="16,14">
+                        <Border.Shadow>
+                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
+                        </Border.Shadow>
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border Grid.Column="0" BackgroundColor="#FFF3E0"
+                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
+                                    WidthRequest="44" HeightRequest="44">
+                                <Label Text="SO" FontSize="14" FontAttributes="Bold"
+                                       TextColor="#FF8C00"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                <Label Text="Shaquille O'Neal" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
+                                <Label Text="05 Mar 2024" FontSize="11" TextColor="#9E9E9E" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="+$400.00"
+                                   FontSize="14" FontAttributes="Bold"
+                                   TextColor="#7B2FBE" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
+                    <!-- Item 5 -->
+                    <Border BackgroundColor="White"
+                            StrokeShape="RoundRectangle 14"
+                            Stroke="#EBEBEB" StrokeThickness="1.5"
+                            Padding="16,14">
+                        <Border.Shadow>
+                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
+                        </Border.Shadow>
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border Grid.Column="0" BackgroundColor="#E8EAF6"
+                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
+                                    WidthRequest="44" HeightRequest="44">
+                                <Label Text="CJ" FontSize="14" FontAttributes="Bold"
+                                       TextColor="#3949AB"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                <Label Text="Carl Johnson" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
+                                <Label Text="06 Apr 2024" FontSize="11" TextColor="#9E9E9E" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="+$500.00"
+                                   FontSize="14" FontAttributes="Bold"
+                                   TextColor="#7B2FBE" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
+                    <!-- Item 6 -->
+                    <Border BackgroundColor="White"
+                            StrokeShape="RoundRectangle 14"
+                            Stroke="#EBEBEB" StrokeThickness="1.5"
+                            Padding="16,14">
+                        <Border.Shadow>
+                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
+                        </Border.Shadow>
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Border Grid.Column="0" BackgroundColor="#E0F7FA"
+                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
+                                    WidthRequest="44" HeightRequest="44">
+                                <Label Text="RG" FontSize="14" FontAttributes="Bold"
+                                       TextColor="#00838F"
+                                       HorizontalOptions="Center" VerticalOptions="Center" />
+                            </Border>
+                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
+                                <Label Text="Raymond Garcia" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
+                                <Label Text="06 Apr 2024" FontSize="11" TextColor="#9E9E9E" />
+                            </VerticalStackLayout>
+                            <Label Grid.Column="2" Text="+$500.00"
+                                   FontSize="14" FontAttributes="Bold"
+                                   TextColor="#7B2FBE" VerticalOptions="Center" />
+                        </Grid>
+                    </Border>
+
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Border Grid.Row="2"
+                BackgroundColor="White"
+                Stroke="#E0E0E0"
+                StrokeThickness="0"
+                Padding="10,12,10,28">
+            <Border.Shadow>
+                <Shadow Brush="#000000" Offset="0,-3" Radius="12" Opacity="0.06" />
+            </Border.Shadow>
+            <Grid>
+                <BoxView HeightRequest="1" Color="#F0F0F0"
+                         VerticalOptions="Start" HorizontalOptions="Fill" />
+                <Grid ColumnDefinitions="*,*,*,*" Margin="0,4,0,0">
+                    
+                    <!-- Home (active) -->
+                    <Button Grid.Column="0"
+                            ImageSource="home.png"
+                            Text="Home"
+                            FontSize="10"
+                            FontAttributes="Bold"
+                            TextColor="#7B2FBE"
+                            BackgroundColor="#EDE7F6"
+                            BorderColor="Transparent"
+                            CornerRadius="10"
+                            ContentLayout="Top, 4"
+                            HorizontalOptions="Center"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            Padding="12,6"/>
+
+                    <!-- My Cards -->
+                    <Button Grid.Column="1"
+        ImageSource="card.png"
+        Text="My Cards"
+        FontSize="10"
+        FontAttributes="Bold"
+        TextColor="#7B2FBE"
+        BackgroundColor="#EDE7F6"
+        BorderColor="Transparent"
+        CornerRadius="10"
+        ContentLayout="Top, 4"
+        HorizontalOptions="Center"
+        HeightRequest="60"
+        WidthRequest="60"
+        Padding="12,6"/>
+
+                    <!-- History -->
+                    <Button Grid.Column="2"
+        ImageSource="history.png"
+        Text="History"
+        FontSize="10"
+        FontAttributes="Bold"
+        TextColor="#7B2FBE"
+        BackgroundColor="#EDE7F6"
+        BorderColor="Transparent"
+        CornerRadius="10"
+        ContentLayout="Top, 4"
+        HorizontalOptions="Center"
+        HeightRequest="60"
+        WidthRequest="60"
+        Padding="12,6"/>
+
+                    <!-- Profile -->
+                    <Button Grid.Column="3"
+        ImageSource="user.png"
+        Text="Profile"
+        FontSize="10"
+        FontAttributes="Bold"
+        TextColor="#7B2FBE"
+        BackgroundColor="#EDE7F6"
+        BorderColor="Transparent"
+        CornerRadius="10"
+        ContentLayout="Top, 4"
+        HorizontalOptions="Center"
+        HeightRequest="60"
+        WidthRequest="60"
+        Padding="12,6"/>
+                </Grid>
+            </Grid>
+        </Border>
+
+    </Grid>
+</ContentPage>
