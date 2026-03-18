@@ -474,7 +474,7 @@
                             FontSize="10"
                             FontAttributes="Bold"
                             TextColor="Black"
-                            BackgroundColor="#EDE7F6"
+                            BackgroundColor="Transparent"
                             BorderColor="Transparent"
                             CornerRadius="10"
                             ContentLayout="Top, 4"

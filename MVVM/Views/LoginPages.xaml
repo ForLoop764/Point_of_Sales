@@ -36,8 +36,7 @@
                            HorizontalOptions="Start"
                            Aspect="AspectFit"
                            Margin="0,0,0,14" />
-                    <Label Text="WELCOME BACK" FontSize="11" FontAttributes="Bold"
-                           CharacterSpacing="4" TextColor="#7B2FBE" HorizontalOptions="Start" />
+                    
                     <Label FontSize="34" FontAttributes="Bold"
                            TextColor="#1A1A1A" HorizontalOptions="Start">
                         <Label.FormattedText>
@@ -64,8 +63,8 @@
 
                         <!-- Username -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="USERNAME" FontSize="10" FontAttributes="Bold"
-                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Label Text="USERNAME" FontSize="Caption" 
+                                   CharacterSpacing="2" TextColor="Black" />
                             <Border BackgroundColor="#F7F8FA"
                                     StrokeShape="RoundRectangle 12"
                                     Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
@@ -86,8 +85,8 @@
 
                         <!-- Password -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="PASSWORD" FontSize="10" FontAttributes="Bold"
-                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Label Text="PASSWORD" FontSize="Caption" 
+                                   CharacterSpacing="2" TextColor="Black" />
                             <Border BackgroundColor="#F7F8FA"
                                     StrokeShape="RoundRectangle 12"
                                     Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
@@ -109,7 +108,7 @@
 
                         <!-- Forgot Password -->
                         <Label Text="Forgot password?"
-                               FontSize="12" FontAttributes="Bold"
+                               FontSize="Body" FontAttributes="Bold"
                                TextColor="#FF8C00"
                                HorizontalOptions="End" />
 
@@ -118,7 +117,7 @@
 
                 <!-- ── Login Button ── -->
                 <Button Text="LOGIN"
-                        BackgroundColor="#7B2FBE"
+                        BackgroundColor="#408A71"
                         TextColor="White"
                         FontAttributes="Bold"
                         FontSize="15"

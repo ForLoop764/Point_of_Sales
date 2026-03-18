@@ -31,12 +31,7 @@
         <ScrollView VerticalScrollBarVisibility="Never">
             <VerticalStackLayout Padding="32,52,32,40" Spacing="0" VerticalOptions="Start">
 
-                <!-- ── Back Button ── -->
-                <HorizontalStackLayout Spacing="6" Margin="0,0,0,24">
-                    <Label Text="←" FontSize="18" TextColor="#7B2FBE" VerticalOptions="Center" />
-                    <Label Text="Back to Login" FontSize="13" FontAttributes="Bold"
-                           TextColor="#7B2FBE" VerticalOptions="Center" />
-                </HorizontalStackLayout>
+                
 
                 <!-- ── Logo + Brand Block ── -->
                 <VerticalStackLayout Spacing="4" Margin="0,0,0,28" HorizontalOptions="Start">
@@ -46,9 +41,11 @@
                            HorizontalOptions="Start"
                            Aspect="AspectFit"
                            Margin="0,0,0,14" />
-                    <Label Text="JOIN US TODAY" FontSize="11" FontAttributes="Bold"
-                           CharacterSpacing="4" TextColor="#7B2FBE" HorizontalOptions="Start" />
-                    <Label FontSize="34" FontAttributes="Bold" HorizontalOptions="Start">
+                    
+                    <Label FontSize="34" 
+                           FontAttributes="Bold" 
+                           HorizontalOptions="Start">
+                        
                         <Label.FormattedText>
                             <FormattedString>
                                 <Span Text="Create " TextColor="#1A1A1A" FontSize="34" FontAttributes="Bold"/>
@@ -73,8 +70,8 @@
 
                         <!-- Full Name -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="FULL NAME" FontSize="10" FontAttributes="Bold"
-                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Label Text="FULL NAME" FontSize="Caption" 
+                                   CharacterSpacing="2" TextColor="Black" />
                             <Border BackgroundColor="#F7F8FA"
                                     StrokeShape="RoundRectangle 12"
                                     Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
@@ -94,8 +91,8 @@
 
                         <!-- Username -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="USERNAME" FontSize="10" FontAttributes="Bold"
-                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Label Text="USERNAME" FontSize="Caption" 
+                                   CharacterSpacing="2" TextColor="Black" />
                             <Border BackgroundColor="#F7F8FA"
                                     StrokeShape="RoundRectangle 12"
                                     Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
@@ -115,8 +112,8 @@
 
                         <!-- Email -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="EMAIL ADDRESS" FontSize="10" FontAttributes="Bold"
-                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Label Text="EMAIL ADDRESS" FontSize="Caption" 
+                                   CharacterSpacing="2" TextColor="Black" />
                             <Border BackgroundColor="#F7F8FA"
                                     StrokeShape="RoundRectangle 12"
                                     Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
@@ -137,8 +134,8 @@
 
                         <!-- Password -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="PASSWORD" FontSize="10" FontAttributes="Bold"
-                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Label Text="PASSWORD" FontSize="Caption" 
+                                   CharacterSpacing="2" TextColor="Black" />
                             <Border BackgroundColor="#F7F8FA"
                                     StrokeShape="RoundRectangle 12"
                                     Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
@@ -159,8 +156,8 @@
 
                         <!-- Confirm Password -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="CONFIRM PASSWORD" FontSize="10" FontAttributes="Bold"
-                                   CharacterSpacing="2" TextColor="#7B2FBE" />
+                            <Label Text="CONFIRM PASSWORD" FontSize="Caption" 
+                                   CharacterSpacing="2" TextColor="Black" />
                             <Border BackgroundColor="#F7F8FA"
                                     StrokeShape="RoundRectangle 12"
                                     Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
@@ -183,16 +180,17 @@
                 </Border>
 
                 <!-- ── Register Button ── -->
-                <Button Text="CREATE ACCOUNT  →"
+                <Button Text="CREATE ACCOUNT"
                         Command="{Binding RegisterCommand}"
-                        BackgroundColor="#7B2FBE"
+                        BackgroundColor="#408A71"
                         TextColor="White"
                         FontAttributes="Bold"
                         FontSize="15"
                         CharacterSpacing="1"
                         CornerRadius="14"
                         HeightRequest="56"
-                        Margin="0,0,0,12">
+                        Margin="0,0,0,12"
+                        Clicked="Button_Clicked_1">
                     <Button.Shadow>
                         <Shadow Brush="#7B2FBE" Offset="0,6" Radius="16" Opacity="0.30" />
                     </Button.Shadow>

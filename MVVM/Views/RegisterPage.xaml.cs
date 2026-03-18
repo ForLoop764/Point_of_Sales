@@ -12,4 +12,9 @@ public partial class RegisterPage : ContentPage
         Application.Current.MainPage = new LoginPage();
 
     }
+
+    private void Button_Clicked_1(object sender, EventArgs e)
+    {
+        
+    }
 }
