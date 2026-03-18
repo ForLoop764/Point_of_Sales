@@ -424,14 +424,15 @@
                 <BoxView HeightRequest="1" Color="#F0F0F0"
                          VerticalOptions="Start" HorizontalOptions="Fill" />
                 <Grid ColumnDefinitions="*,*,*,*" Margin="0,5,0,0">
-                    
+
+                    <!-- Home -->
                     <Button Grid.Column="0"
                             ImageSource="home.png"
                             Text="Home"
                             FontSize="10"
                             FontAttributes="Bold"
                             TextColor="Black"
-                            BackgroundColor="Transparent"
+                            BackgroundColor="#EDE7F6"
                             BorderColor="Transparent"
                             CornerRadius="10"
                             ContentLayout="Top, 4"
@@ -439,40 +440,42 @@
                             HeightRequest="60"
                             WidthRequest="60"
                             Padding="12,6"/>
-                    
+
+                    <!-- Users -->
                     <Button Grid.Column="1"
-                            ImageSource="cart.png"
-                            Text="Purchase"
-                            FontSize="10"
-                            FontAttributes="Bold"
-                            TextColor="Black"
-                            BackgroundColor="Transparent"
-                            BorderColor="Transparent"
-                            CornerRadius="10"
-                            ContentLayout="Top, 4"
-                            HorizontalOptions="Center"
-                            HeightRequest="60"
-                            WidthRequest="60"
-                            Padding="12,6"/>
-                    <Button Grid.Column="2"
-                            ImageSource="history.png"
-                            Text="History"
-                            FontSize="10"
-                            FontAttributes="Bold"
-                            TextColor="Black"
-                            BackgroundColor="Transparent"
-                            BorderColor="Transparent"
-                            CornerRadius="10"
-                            ContentLayout="Top, 4"
-                            HorizontalOptions="Center"
-                            HeightRequest="60"
-                            WidthRequest="60"
-                            Padding="12,6"/>
-                    <Button Grid.Column="3"
                             ImageSource="user.png"
-                            Text="Profile"
+                            Text="Users"
                             FontSize="10"
-                            FontAttributes="Bold"
+                            TextColor="Black"
+                            BackgroundColor="Transparent"
+                            BorderColor="Transparent"
+                            CornerRadius="10"
+                            ContentLayout="Top, 4"
+                            HorizontalOptions="Center"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            Padding="12,6"/>
+
+                    <!-- Reports -->
+                    <Button Grid.Column="2"
+                            ImageSource="report.png"
+                            Text="Reports"
+                            FontSize="10"
+                            TextColor="Black"
+                            BackgroundColor="Transparent"
+                            BorderColor="Transparent"
+                            CornerRadius="10"
+                            ContentLayout="Top, 4"
+                            HorizontalOptions="Center"
+                            HeightRequest="60"
+                            WidthRequest="60"
+                            Padding="12,6"/>
+
+                    <!-- Settings -->
+                    <Button Grid.Column="3"
+                            ImageSource="settings.png"
+                            Text="Settings"
+                            FontSize="10"
                             TextColor="Black"
                             BackgroundColor="Transparent"
                             BorderColor="Transparent"
