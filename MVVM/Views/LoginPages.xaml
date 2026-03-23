@@ -107,10 +107,12 @@
                         </VerticalStackLayout>
 
                         <!-- Forgot Password -->
-                        <Label Text="Forgot password?"
+                        <Button Text="Forgot password?"
                                FontSize="Body" FontAttributes="Bold"
                                TextColor="#FF8C00"
-                               HorizontalOptions="End" />
+                               HorizontalOptions="End"
+                               BackgroundColor="Transparent"
+                               Clicked="Button_Clicked_2"/>
 
                     </VerticalStackLayout>
                 </Border>
