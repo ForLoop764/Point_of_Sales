@@ -1,46 +1,48 @@
-using Point_of_Sales.MVVM.ViewModels;
+using Point_of_Sales.MVVM.Services;
 
 namespace Point_of_Sales.MVVM.Views;
 
 public partial class LoginPage : ContentPage
 {
-    private Login _viewModel;
-
     public LoginPage()
     {
         InitializeComponent();
-        _viewModel = new Login();
-        BindingContext = _viewModel;
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    // ?? Login Button ??????????????????????????????????????????????????????????
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        string username = UsernameEntry.Text;
-        string password = PasswordEntry.Text;
+        var username = UsernameEntry.Text?.Trim();
+        var password = PasswordEntry.Text;
 
         if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
         {
-            DisplayAlert("Error", "Please enter your username and password.", "OK");
+            await DisplayAlert("Login Failed", "Please enter your username and password.", "OK");
             return;
         }
 
-        if (username == "Admin" && password == "Admin123")
+        var user = UserService.ValidateLogin(username, password);
+
+        if (user != null)
         {
             Application.Current.MainPage = new UserManagement();
         }
         else
         {
-            DisplayAlert("Login Failed", "Invalid username or password.", "OK");
+            await DisplayAlert("Login Failed",
+                "Incorrect username or password. Please try again.", "OK");
         }
     }
 
+    // ?? Forgot Password Button ????????????????????????????????????????????????
+    private async void Button_Clicked_2(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ForgotPasswordPage());
+    }
+
+    // ?? Sign Up Button ????????????????????????????????????????????????????????
     private void Button_Clicked_1(object sender, EventArgs e)
     {
         Application.Current.MainPage = new RegisterPage();
-    }
-
-    private void Button_Clicked_2(object sender, EventArgs e)
-    {
-        Application.Current.MainPage = new ForgotPasswordPage();
     }
 }
