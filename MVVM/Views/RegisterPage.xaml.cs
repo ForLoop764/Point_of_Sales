@@ -10,17 +10,38 @@ public partial class RegisterPage : ContentPage
         InitializeComponent();
     }
 
-    // ?? Create Account Button ?????????????????????????????????????????????????
+    //  Create Account Button 
     private async void Button_Clicked_1(object sender, EventArgs e)
     {
+        var fullname = FullNameEntry.Text?.Trim();
         var username = UsernameEntry.Text?.Trim();
+        var email = EmailEntry.Text?.Trim();      // ? separate email field
         var password = PasswordEntry.Text;
         var confirm = ConfirmPasswordEntry.Text;
 
-        // ?? Validation ????????????????????????????????????????????????????????
+        //  Validation 
+        if (string.IsNullOrWhiteSpace(fullname))
+        {
+            await DisplayAlert("Validation", "Full name is required.", "OK");
+            return;
+        }
+
         if (string.IsNullOrWhiteSpace(username))
         {
             await DisplayAlert("Validation", "Username is required.", "OK");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            await DisplayAlert("Validation", "Email is required.", "OK");
+            return;
+        }
+
+        // Email format validation ? validates EmailEntry, not UsernameEntry
+        if (!IsValidEmail(email))
+        {
+            await DisplayAlert("Validation", "Please enter a valid email address (e.g. example@gmail.com).", "OK");
             return;
         }
 
@@ -49,7 +70,7 @@ public partial class RegisterPage : ContentPage
             return;
         }
 
-        // ?? Register ??????????????????????????????????????????????????????????
+        //  Register 
         var model = new RegisterModel
         {
             Username = username,
@@ -62,8 +83,6 @@ public partial class RegisterPage : ContentPage
         {
             await DisplayAlert("Account Created",
                 $"Welcome, {username}! Your account has been created. Please sign in.", "OK");
-
-            // Navigate back to Login
             Application.Current.MainPage = new LoginPage();
         }
         else
@@ -72,7 +91,21 @@ public partial class RegisterPage : ContentPage
         }
     }
 
-    // ?? Back to Login Button ??????????????????????????????????????????????????
+    // Email validation helper method
+    private bool IsValidEmail(string email)
+    {
+        try
+        {
+            var addr = new System.Net.Mail.MailAddress(email);
+            return addr.Address == email;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    //  Back to Login Button 
     private void Button_Clicked(object sender, EventArgs e)
     {
         Application.Current.MainPage = new LoginPage();
