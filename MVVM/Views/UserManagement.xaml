@@ -8,23 +8,7 @@
 
     <Grid RowDefinitions="Auto,*,Auto">
 
-        <AbsoluteLayout Grid.RowSpan="3" InputTransparent="True">
-            <BoxView AbsoluteLayout.LayoutBounds="1.07, -0.01, 190, 190"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#EDE7F6" CornerRadius="95" />
-            <BoxView AbsoluteLayout.LayoutBounds="0.87, 0.07, 85, 85"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#D1C4E9" CornerRadius="42" />
-            <BoxView AbsoluteLayout.LayoutBounds="-0.06, 0.97, 150, 150"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#FFF3E0" CornerRadius="75" />
-            <BoxView AbsoluteLayout.LayoutBounds="-0.06, 0.50, 55, 55"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#FFE0B2" CornerRadius="28" />
-            <BoxView AbsoluteLayout.LayoutBounds="1.0, 0.38, 3, 48"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#7B2FBE" />
-        </AbsoluteLayout>
+        
 
 
         <!-- ── Top Bar ── -->

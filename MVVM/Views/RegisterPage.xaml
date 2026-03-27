@@ -7,23 +7,7 @@
 
     <Grid>
 
-        <AbsoluteLayout InputTransparent="True">
-            <BoxView AbsoluteLayout.LayoutBounds="-0.06, -0.02, 200, 200"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#EDE7F6" CornerRadius="100" />
-            <BoxView AbsoluteLayout.LayoutBounds="0.10, 0.06, 90, 90"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#D1C4E9" CornerRadius="45" />
-            <BoxView AbsoluteLayout.LayoutBounds="1.06, 0.97, 170, 170"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#FFF3E0" CornerRadius="85" />
-            <BoxView AbsoluteLayout.LayoutBounds="1.06, 0.84, 80, 80"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#FFE0B2" CornerRadius="40" />
-            <BoxView AbsoluteLayout.LayoutBounds="1.0, 0.55, 3, 50"
-                     AbsoluteLayout.LayoutFlags="PositionProportional"
-                     Color="#FF8C00" />
-        </AbsoluteLayout>
+        
 
         <ScrollView VerticalScrollBarVisibility="Never">
             <VerticalStackLayout Padding="32,52,32,40" Spacing="0" VerticalOptions="Start">

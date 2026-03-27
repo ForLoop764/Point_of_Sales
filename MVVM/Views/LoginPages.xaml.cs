@@ -26,6 +26,7 @@ public partial class LoginPage : ContentPage
         if (user != null)
         {
             Application.Current.MainPage = new UserManagement();
+
         }
         else
         {
