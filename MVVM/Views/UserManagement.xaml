@@ -25,6 +25,7 @@
             HeightRequest="40"
             Padding="0"
             VerticalOptions="Center"
+            Clicked="Button_Clicked_1"
             />
 
             <!-- Logo -->

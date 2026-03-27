@@ -21,4 +21,10 @@ public partial class UserManagement : ContentPage
     {
         DisplayAlert("Delete User", "Are you sure you want to delete this user?", "Yes", "No");
     }
+
+
+    private void Button_Clicked_1(object sender, EventArgs e)
+    {
+
+    }
 }
