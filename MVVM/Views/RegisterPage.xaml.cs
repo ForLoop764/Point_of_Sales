@@ -10,59 +10,51 @@ public partial class RegisterPage : ContentPage
         InitializeComponent();
     }
 
-    //  Create Account Button 
+    // Show Password Checkbox
+    private void OnShowPasswordCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        PasswordEntry.IsPassword        = !e.Value;
+        ConfirmPasswordEntry.IsPassword = !e.Value;
+    }
+
+    // Create Account Button
     private async void Button_Clicked_1(object sender, EventArgs e)
     {
-        var fullname = FullNameEntry.Text?.Trim();
         var username = UsernameEntry.Text?.Trim();
-        var email = EmailEntry.Text?.Trim();      // ? separate email field
+        var email    = EmailEntry.Text?.Trim();
         var password = PasswordEntry.Text;
-        var confirm = ConfirmPasswordEntry.Text;
-
-        //  Validation 
-        if (string.IsNullOrWhiteSpace(fullname))
-        {
-            await DisplayAlert("Validation", "Full name is required.", "OK");
-            return;
-        }
+        var confirm  = ConfirmPasswordEntry.Text;
 
         if (string.IsNullOrWhiteSpace(username))
         {
             await DisplayAlert("Validation", "Username is required.", "OK");
             return;
         }
-
         if (string.IsNullOrWhiteSpace(email))
         {
             await DisplayAlert("Validation", "Email is required.", "OK");
             return;
         }
-
-        // Email format validation ? validates EmailEntry, not UsernameEntry
         if (!IsValidEmail(email))
         {
             await DisplayAlert("Validation", "Please enter a valid email address (e.g. example@gmail.com).", "OK");
             return;
         }
-
         if (string.IsNullOrWhiteSpace(password))
         {
             await DisplayAlert("Validation", "Password is required.", "OK");
             return;
         }
-
         if (password.Length < 6)
         {
             await DisplayAlert("Validation", "Password must be at least 6 characters.", "OK");
             return;
         }
-
         if (password != confirm)
         {
             await DisplayAlert("Validation", "Passwords do not match.", "OK");
             return;
         }
-
         if (UserService.UsernameExists(username))
         {
             await DisplayAlert("Registration Failed",
@@ -70,7 +62,6 @@ public partial class RegisterPage : ContentPage
             return;
         }
 
-        //  Register 
         var model = new RegisterModel
         {
             Username = username,
@@ -83,7 +74,7 @@ public partial class RegisterPage : ContentPage
         {
             await DisplayAlert("Account Created",
                 $"Welcome, {username}! Your account has been created. Please sign in.", "OK");
-            Application.Current.MainPage = new LoginPage();
+            Application.Current!.Windows[0].Page = new LoginPage();
         }
         else
         {
@@ -91,7 +82,7 @@ public partial class RegisterPage : ContentPage
         }
     }
 
-    // Email validation helper method
+    // Email validation helper
     private bool IsValidEmail(string email)
     {
         try
@@ -105,9 +96,9 @@ public partial class RegisterPage : ContentPage
         }
     }
 
-    //  Back to Login Button 
+    // Back to Login Button
     private void Button_Clicked(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new LoginPage();
+        Application.Current!.Windows[0].Page = new LoginPage();
     }
 }
