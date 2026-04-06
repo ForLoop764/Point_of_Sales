@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Point_of_Sales.MVVM.ViewModels"
              x:Class="Point_of_Sales.MVVM.Views.RegisterPage"
              BackgroundColor="#F7F8FA">
 
     <Grid>
 
-        
-
         <ScrollView VerticalScrollBarVisibility="Never">
             <VerticalStackLayout Padding="32,52,32,40" Spacing="0" VerticalOptions="Start">
 
-                <!-- ── Logo + Brand Block ── -->
+                <!-- Logo + Brand -->
                 <VerticalStackLayout Spacing="4" Margin="0,0,0,28" HorizontalOptions="Start">
-                    <Image Source="shoepair_logo.png"
-                           HeightRequest="64"
-                           WidthRequest="64"
+                    <Image Source="logo.png"
+                           HeightRequest="64" WidthRequest="64"
                            HorizontalOptions="Start"
                            Aspect="AspectFit"
                            Margin="0,0,0,14" />
-
-                    <Label FontSize="34"
-                           FontAttributes="Bold"
-                           HorizontalOptions="Start">
+                    <Label FontSize="34" FontAttributes="Bold" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Create " TextColor="#1A1A1A" FontSize="34" FontAttributes="Bold"/>
-                                <Span Text="Account" TextColor="#FF8C00" FontSize="34" FontAttributes="Bold"/>
+                                <Span Text="Create " TextColor="#1A1A1A"
+                                      FontSize="34" FontAttributes="Bold"/>
+                                <Span Text="Account" TextColor="#FF8C00"
+                                      FontSize="34" FontAttributes="Bold"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
@@ -36,7 +31,7 @@
                            HorizontalOptions="Start" Margin="0,4,0,0" />
                 </VerticalStackLayout>
 
-                <!-- ── Input Card ── -->
+                <!-- Input Card -->
                 <Border BackgroundColor="White"
                         StrokeShape="RoundRectangle 20"
                         Stroke="#EBEBEB" StrokeThickness="1.5"
@@ -45,27 +40,6 @@
                         <Shadow Brush="#000000" Offset="0,4" Radius="20" Opacity="0.07" />
                     </Border.Shadow>
                     <VerticalStackLayout Spacing="20">
-
-                        <!-- Full Name -->
-                        <VerticalStackLayout Spacing="8">
-                            <Label Text="FULL NAME" FontSize="Caption"
-                                   CharacterSpacing="2" TextColor="Black" />
-                            <Border BackgroundColor="#F7F8FA"
-                                    StrokeShape="RoundRectangle 12"
-                                    Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
-                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
-                                    <Label Grid.Column="0" Text="🪪" FontSize="16"
-                                           VerticalOptions="Center" TextColor="#BDBDBD" />
-                                    <Entry x:Name="FullNameEntry"
-                                           Grid.Column="1"
-                                           Placeholder="Enter your full name"
-                                           PlaceholderColor="#BDBDBD"
-                                           TextColor="#1A1A1A"
-                                           BackgroundColor="Transparent"
-                                           HeightRequest="52" FontSize="15" />
-                                </Grid>
-                            </Border>
-                        </VerticalStackLayout>
 
                         <!-- Username -->
                         <VerticalStackLayout Spacing="8">
@@ -77,8 +51,9 @@
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="👤" FontSize="16"
                                            VerticalOptions="Center" TextColor="#BDBDBD" />
-                                    <Entry x:Name="UsernameEntry"
-                                           Grid.Column="1"
+                                    <Entry Grid.Column="1"
+                                           x:Name="UsernameEntry"
+                                           Text="{Binding Username}"
                                            Placeholder="Choose a username"
                                            PlaceholderColor="#BDBDBD"
                                            TextColor="#1A1A1A"
@@ -98,8 +73,9 @@
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="✉️" FontSize="16"
                                            VerticalOptions="Center" TextColor="#BDBDBD" />
-                                    <Entry x:Name="EmailEntry"
-                                           Grid.Column="1"
+                                    <Entry Grid.Column="1"
+                                           x:Name="EmailEntry"
+                                           Text="{Binding Email}"
                                            Placeholder="Enter your email"
                                            PlaceholderColor="#BDBDBD"
                                            Keyboard="Email"
@@ -120,11 +96,12 @@
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="🔒" FontSize="16"
                                            VerticalOptions="Center" TextColor="#BDBDBD" />
-                                    <Entry x:Name="PasswordEntry"
-                                           Grid.Column="1"
+                                    <Entry Grid.Column="1"
+                                           x:Name="PasswordEntry"
+                                           Text="{Binding Password}"
                                            Placeholder="Create a password"
                                            PlaceholderColor="#BDBDBD"
-                                           IsPassword="True"
+                                           IsPassword="{Binding IsPasswordHidden}"
                                            TextColor="#1A1A1A"
                                            BackgroundColor="Transparent"
                                            HeightRequest="52" FontSize="15" />
@@ -142,23 +119,35 @@
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="🔐" FontSize="16"
                                            VerticalOptions="Center" TextColor="#BDBDBD" />
-                                    <Entry x:Name="ConfirmPasswordEntry"
-                                           Grid.Column="1"
+                                    <Entry Grid.Column="1"
+                                           x:Name="ConfirmPasswordEntry"
+                                           Text="{Binding ConfirmPassword}"
                                            Placeholder="Re-enter your password"
                                            PlaceholderColor="#BDBDBD"
-                                           IsPassword="True"
+                                           IsPassword="{Binding IsPasswordHidden}"
                                            TextColor="#1A1A1A"
                                            BackgroundColor="Transparent"
                                            HeightRequest="52" FontSize="15" />
                                 </Grid>
                             </Border>
+
+                            <!-- Show Password Checkbox -->
+                            <HorizontalStackLayout Spacing="8" Margin="4,4,0,0">
+                                <CheckBox Color="#408A71"
+                                          CheckedChanged="OnShowPasswordCheckedChanged" />
+                                <Label Text="Show Password"
+                                       FontSize="13" TextColor="#9E9E9E"
+                                       VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
                         </VerticalStackLayout>
 
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- ── Register Button ── -->
+                <!-- Register Button -->
                 <Button Text="CREATE ACCOUNT"
+                        Command="{Binding RegisterCommand}"
                         BackgroundColor="#408A71"
                         TextColor="White"
                         FontAttributes="Bold"
@@ -166,36 +155,39 @@
                         CharacterSpacing="1"
                         CornerRadius="14"
                         HeightRequest="56"
-                        Margin="0,0,0,12"
-                        Clicked="Button_Clicked_1">
+                        Margin="0,0,0,12">
                     <Button.Shadow>
                         <Shadow Brush="#7B2FBE" Offset="0,6" Radius="16" Opacity="0.30" />
                     </Button.Shadow>
                 </Button>
 
-                <!-- ── Loading ── -->
-                <ActivityIndicator x:Name="LoadingIndicator"
-                                   IsRunning="False"
-                                   IsVisible="False"
-                                   Color="#7B2FBE" Margin="0,4,0,0" />
-
-                <!-- ── Divider ── -->
+                <!-- Divider -->
                 <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="12"
                       Margin="0,20,0,20" VerticalOptions="Center">
-                    <BoxView Grid.Column="0" HeightRequest="1" Color="#E0E0E0" VerticalOptions="Center" />
+                    <BoxView Grid.Column="0" HeightRequest="1"
+                             Color="#E0E0E0" VerticalOptions="Center" />
                     <Label Grid.Column="1" Text="OR" FontSize="11"
-                           CharacterSpacing="2" TextColor="#BDBDBD" VerticalOptions="Center" />
-                    <BoxView Grid.Column="2" HeightRequest="1" Color="#E0E0E0" VerticalOptions="Center" />
+                           CharacterSpacing="2" TextColor="#BDBDBD"
+                           VerticalOptions="Center" />
+                    <BoxView Grid.Column="2" HeightRequest="1"
+                             Color="#E0E0E0" VerticalOptions="Center" />
                 </Grid>
 
-                <!-- ── Sign In ── -->
-                <HorizontalStackLayout HorizontalOptions="Center" Spacing="6">
+                <!-- Sign In -->
+                <HorizontalStackLayout HorizontalOptions="Center"
+                       Spacing="6" Margin="0,0,0,20">
                     <Label Text="Already have an account?"
-                           FontSize="13" TextColor="#9E9E9E" VerticalOptions="Center" />
-                    <Button Text="SIGN IN" FontSize="13" FontAttributes="Bold"
-                            TextColor="#FF8C00" VerticalOptions="Center" CharacterSpacing="1"
-                            BackgroundColor="Transparent"
-                            Clicked="Button_Clicked"/>
+                           FontSize="13" TextColor="#9E9E9E"
+                           VerticalOptions="Center" />
+                    
+                    <Button Text="SIGN IN"
+                            Command="{Binding GoToLoginCommand}"
+                            FontSize="13"
+                            FontAttributes="Bold"
+                            TextColor="#FF8C00"
+                            CharacterSpacing="1"
+                            BackgroundColor="Transparent"/>
+                    
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>

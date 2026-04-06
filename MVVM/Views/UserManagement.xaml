@@ -16,17 +16,17 @@
 
             <!-- Burger  -->
             <Button Grid.Column="0"
-            Text="☰"
-            FontSize="20"
-            TextColor="#1A1A1A"
-            BackgroundColor="Transparent"
-            BorderColor="Transparent"
-            WidthRequest="40"
-            HeightRequest="40"
-            Padding="0"
-            VerticalOptions="Center"
-            Clicked="Button_Clicked_1"
-            />
+                    Text="☰"
+                    FontSize="20"
+                    TextColor="#1A1A1A"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    Padding="0"
+                    VerticalOptions="Center"
+                    Clicked="Button_Clicked_1"
+            />  
 
             <!-- Logo -->
             <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center"
