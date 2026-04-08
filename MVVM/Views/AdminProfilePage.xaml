@@ -1,0 +1,75 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Point_of_Sales.MVVM.Views.AdminProfilePage"
+             Title="Profile"
+             BackgroundColor="#141414">
+
+    <VerticalStackLayout Padding="25" Spacing="20">
+
+        <!-- Profile Header -->
+        <HorizontalStackLayout Spacing="15" VerticalOptions="Center">
+            <Frame HeightRequest="80"
+                   WidthRequest="80"
+                   CornerRadius="40"
+                   BackgroundColor="#E50914"
+                   Padding="0"
+                   HasShadow="False">
+                <Label Text="A"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       FontSize="40"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"/>
+            </Frame>
+
+            <VerticalStackLayout>
+                <Label Text="Admin"
+                       FontSize="22"
+                       TextColor="White"
+                       FontAttributes="Bold"/>
+
+                <Label Text="admin@pos.com"
+                       FontSize="14"
+                       TextColor="Gray"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+
+        <!-- Divider -->
+        <BoxView HeightRequest="1" BackgroundColor="#333"/>
+
+        <!-- Menu Section -->
+        <VerticalStackLayout Spacing="15">
+
+            <Frame BackgroundColor="#222"
+                   CornerRadius="10"
+                   Padding="15">
+                <Label Text="Account Settings"
+                       TextColor="White"/>
+            </Frame>
+
+            <Frame BackgroundColor="#222"
+                   CornerRadius="10"
+                   Padding="15">
+                <Label Text="Security"
+                       TextColor="White"/>
+            </Frame>
+
+            <Frame BackgroundColor="#222"
+                   CornerRadius="10"
+                   Padding="15">
+                <Label Text="Help Center"
+                       TextColor="White"/>
+            </Frame>
+
+        </VerticalStackLayout>
+
+        <!-- Logout Button -->
+        <Button Text="Log Out"
+                BackgroundColor="#E50914"
+                TextColor="White"
+                CornerRadius="10"
+                HeightRequest="50"
+               Clicked="Button_Clicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>

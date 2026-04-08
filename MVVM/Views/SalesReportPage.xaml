@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Point_of_Sales.MVVM.Views.SalesReportPage"
+             BackgroundColor="#141414"
+             Title="Sales Report">
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="6">
+            <Label Text="🎬 CINEMA POS" FontSize="22" FontAttributes="Bold"
+                   TextColor="White" HorizontalOptions="Center"/>
+            <Label Text="═══════════════════════" TextColor="#555" HorizontalOptions="Center"/>
+            <Label Text="SALES RECEIPT" FontSize="13" TextColor="#AAAAAA"
+                   HorizontalOptions="Center"/>
+            <Label Text="═══════════════════════" TextColor="#555" HorizontalOptions="Center"/>
+
+            <Grid ColumnDefinitions="*,Auto,Auto" Padding="4,6">
+                <Label Text="MOVIE" TextColor="#FFD700" FontAttributes="Bold" FontSize="12"/>
+                <Label Grid.Column="1" Text="TIME" TextColor="#FFD700"
+                       FontAttributes="Bold" FontSize="12" Margin="0,0,16,0"/>
+                <Label Grid.Column="2" Text="PRICE" TextColor="#FFD700"
+                       FontAttributes="Bold" FontSize="12"/>
+            </Grid>
+            <BoxView HeightRequest="1" Color="#333"/>
+
+            <CollectionView ItemsSource="{Binding Sales}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="*,Auto,Auto" Padding="4,8">
+                            <Label Text="{Binding MovieName}" TextColor="White" FontSize="13"/>
+                            <Label Grid.Column="1" Text="{Binding FormattedTime}"
+                                   TextColor="#888" FontSize="11" Margin="0,0,12,0"/>
+                            <Label Grid.Column="2"
+                                   Text="{Binding Price, StringFormat='₱{0:F2}'}"
+                                   TextColor="#00FF00" FontSize="13"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <BoxView HeightRequest="1" Color="#333" Margin="0,8"/>
+            <Label Text="═══════════════════════" TextColor="#555" HorizontalOptions="Center"/>
+
+            <Grid ColumnDefinitions="*,Auto" Padding="4,4">
+                <Label Text="TOTAL TICKETS SOLD" TextColor="#AAAAAA" FontSize="13"/>
+                <Label Grid.Column="1" Text="{Binding TotalTicketsSold}"
+                       TextColor="White" FontAttributes="Bold"/>
+            </Grid>
+            <Grid ColumnDefinitions="*,Auto" Padding="4,4">
+                <Label Text="TOTAL REVENUE" TextColor="#AAAAAA" FontSize="13"/>
+                <Label Grid.Column="1"
+                       Text="{Binding TotalRevenue, StringFormat='₱{0:F2}'}"
+                       TextColor="#FFD700" FontAttributes="Bold" FontSize="15"/>
+            </Grid>
+
+            <Label Text="═══════════════════════" TextColor="#555" HorizontalOptions="Center"/>
+            <Label Text="Thank you for watching! 🍿" TextColor="#888"
+                   FontSize="12" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

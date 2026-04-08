@@ -1,14 +1,25 @@
 ﻿<?xml version = "1.0" encoding = "UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Point_of_Sales"
              x:Class="Point_of_Sales.App">
+
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
-                <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="Primary">#E50914</Color>
+            <Color x:Key="PrimaryDark">#B20710</Color>
+            <Color x:Key="Background">#141414</Color>
+            <Color x:Key="CardDark">#1F1F1F</Color>
+            <Color x:Key="CardLight">#262626</Color>
+            <Color x:Key="BorderGray">#333333</Color>
+            <Color x:Key="TextMain">#FFFFFF</Color>
+            <Color x:Key="TextSub">#808080</Color>
+
+            <Style TargetType="Frame">
+                <Setter Property="HasShadow" Value="False" />
+                <Setter Property="CornerRadius" Value="4" />
+                <Setter Property="BorderColor" Value="{StaticResource BorderGray}" />
+                <Setter Property="BackgroundColor" Value="{StaticResource CardDark}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

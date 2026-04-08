@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Point_of_Sales.MVVM.Views.MoviePOSPage"
+             BackgroundColor="#141414">
+
+    <ScrollView>
+        <!--MOVIES-->
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="MOVIE POS"
+                   FontSize="22"
+                   TextColor="White"
+                   FontAttributes="Bold"/>
+
+            <CollectionView ItemsSource="{Binding Movies}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BackgroundColor="#1F1F1F" Padding="10" Margin="5">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding Name}" TextColor="White"/>
+                                    <Label Text="{Binding TicketsAvailable}" TextColor="#00FF00"/>
+                                    <Label Text="{Binding Price, StringFormat='₱{0:F2}'}" TextColor="#FFD700"/>
+                                </VerticalStackLayout>
+                                <Button Grid.Column="1"
+                                        Text="SELL"
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.SellTicketCommand}"
+                                        CommandParameter="{Binding}"/>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Button Text="+ Add Movie"
+                    Command="{Binding AddMovieCommand}"
+                    BackgroundColor="Red"
+                    TextColor="White"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

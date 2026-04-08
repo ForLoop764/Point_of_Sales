@@ -1,419 +1,108 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:vm="clr-namespace:Point_of_Sales.MVVM.ViewModels"
              x:Class="Point_of_Sales.MVVM.Views.UserManagement"
-             BackgroundColor="#F7F8FA"
+             BackgroundColor="#141414"
              Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*,Auto">
+	<Grid RowDefinitions="Auto,*">
 
-        
+		<!-- HEADER -->
+		<Grid Grid.Row="0" Padding="20,50,20,10">
+			<Label Text="USERS"
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+		</Grid>
 
+		<!-- CONTENT -->
+		<Grid Grid.Row="1">
 
-        <!-- ── Top Bar ── -->
-        <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto" Padding="20,52,20,16">
+			<ScrollView>
+				<VerticalStackLayout Padding="20" Spacing="10">
 
-            <!-- Burger  -->
-            <Button Grid.Column="0"
-                    Text="☰"
-                    FontSize="20"
-                    TextColor="#1A1A1A"
-                    BackgroundColor="Transparent"
-                    BorderColor="Transparent"
-                    WidthRequest="40"
-                    HeightRequest="40"
-                    Padding="0"
-                    VerticalOptions="Center"
-                    Clicked="Button_Clicked_1"
-            />  
+					<!-- USER LIST -->
+					<CollectionView ItemsSource="{Binding Users}">
+						<CollectionView.ItemTemplate>
+							<DataTemplate>
+								<Frame BackgroundColor="#1F1F1F"
+                                       CornerRadius="8"
+                                       Padding="12"
+                                       Margin="0,4"
+                                       HasShadow="False">
 
-            <!-- Logo -->
-            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="Center"
-                           Spacing="8" VerticalOptions="Center">
-                <Image Source="shoepair_logo.png"
-               HeightRequest="32" WidthRequest="32"
-               Aspect="AspectFit" VerticalOptions="Center" />
-                <Label VerticalOptions="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="Shoe" FontSize="17" FontAttributes="Bold" TextColor="#1A1A1A" />
-                            <Span Text="Pair" FontSize="17" FontAttributes="Bold" TextColor="#FF8C00" />
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-            </HorizontalStackLayout>
+									<Grid ColumnDefinitions="Auto,*,Auto">
 
-            <!-- Add User -->
-            <Button Grid.Column="2"
-            Text="+ Add"
-            FontSize="12"
-            FontAttributes="Bold"
-            TextColor="White"
-            BackgroundColor="#7B2FBE"
-            CornerRadius="10"
-            Padding="14,8"
-            VerticalOptions="Center"
-            Clicked="OnAddUserClicked"/>
-        </Grid>
+										<!-- Avatar -->
+										<Frame WidthRequest="40"
+                                               HeightRequest="40"
+                                               CornerRadius="20"
+                                               BackgroundColor="{StaticResource Primary}"
+                                               Padding="0">
+											<Label Text="{Binding Initials}"
+                                                   TextColor="White"
+                                                   HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   FontAttributes="Bold"/>
+										</Frame>
 
+										<!-- Info -->
+										<VerticalStackLayout Grid.Column="1" Margin="10,0">
+											<Label Text="{Binding Name}"
+                                                   TextColor="White"
+                                                   FontAttributes="Bold"/>
+											<Label Text="{Binding Role}"
+                                                   TextColor="#808080"
+                                                   FontSize="12"/>
+										</VerticalStackLayout>
 
-        <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
-            <VerticalStackLayout Padding="20,8,20,24" Spacing="0">
+										<!-- Actions -->
+										<VerticalStackLayout Grid.Column="2">
 
-                
-                <!-- ── Page Title ── -->
-                <VerticalStackLayout Spacing="2" Margin="0,0,0,20">
-                    <Label FontSize="28" FontAttributes="Bold">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="User " TextColor="#1A1A1A" FontSize="28" FontAttributes="Bold"/>
-                                <Span Text="Management" TextColor="#7B2FBE" FontSize="28" FontAttributes="Bold"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label Text="Manage your team accounts"
-                           FontSize="13" TextColor="#9E9E9E" />
-                </VerticalStackLayout>
+											<Label Text="{Binding Status}"
+                                                   TextColor="{Binding Color}"
+                                                   FontSize="11"
+                                                   FontAttributes="Bold"
+                                                   HorizontalOptions="End"/>
 
-                <!-- ── Search Bar ── -->
-                <Border BackgroundColor="White"
-                        StrokeShape="RoundRectangle 12"
-                        Stroke="#E0E0E0" StrokeThickness="1.5"
-                        Padding="16,0" Margin="0,0,0,20">
-                    <Grid ColumnDefinitions="Auto,*" 
-                          ColumnSpacing="10">
-                        <Label Grid.Column="0" 
-                               Text="🔍" 
-                               FontSize="16"
-                               VerticalOptions="Center" 
-                               TextColor="#BDBDBD" />
-                        <Entry Grid.Column="1"
-                               Placeholder="Search users..."
-                               PlaceholderColor="#BDBDBD"
-                               TextColor="#1A1A1A"
-                               BackgroundColor="Transparent"
-                               HeightRequest="48" FontSize="14" />
-                    </Grid>
-                </Border>
+											<HorizontalStackLayout>
+												<Button Text="✏️"
+                                                        BackgroundColor="Transparent"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditUserCommand}"
+                                                        CommandParameter="{Binding}"/>
 
-                <!-- ── Stats Row ── -->
-                <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10" Margin="0,0,0,20">
+												<Button Text="🗑️"
+                                                        BackgroundColor="Transparent"
+                                                        Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.DeleteUserCommand}"
+                                                        CommandParameter="{Binding}"/>
+											</HorizontalStackLayout>
 
-                    <!-- Total Users -->
-                    <Border Grid.Column="0" BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="14,16">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.05" />
-                        </Border.Shadow>
-                        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
-                            <Label Text="👥" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="6" FontSize="20" FontAttributes="Bold"
-                                   TextColor="#7B2FBE" HorizontalOptions="Center" />
-                            <Label Text="Total" FontSize="10" TextColor="#9E9E9E"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Border>
+										</VerticalStackLayout>
 
-                    <!-- Active -->
-                    <Border Grid.Column="1" BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="14,16">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.05" />
-                        </Border.Shadow>
-                        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
-                            <Label Text="✅" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="4" FontSize="20" FontAttributes="Bold"
-                                   TextColor="#43A047" HorizontalOptions="Center" />
-                            <Label Text="Active" FontSize="10" TextColor="#9E9E9E"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Border>
+									</Grid>
+								</Frame>
+							</DataTemplate>
+						</CollectionView.ItemTemplate>
+					</CollectionView>
 
-                    <!-- Inactive -->
-                    <Border Grid.Column="2" BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="14,16">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.05" />
-                        </Border.Shadow>
-                        <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
-                            <Label Text="🚫" FontSize="22" HorizontalOptions="Center" />
-                            <Label Text="2" FontSize="20" FontAttributes="Bold"
-                                   TextColor="#E53935" HorizontalOptions="Center" />
-                            <Label Text="Inactive" FontSize="10" TextColor="#9E9E9E"
-                                   HorizontalOptions="Center" />
-                        </VerticalStackLayout>
-                    </Border>
+				</VerticalStackLayout>
+			</ScrollView>
 
-                </Grid>
+			<!-- FLOATING ADD BUTTON -->
+			<Button Text="+"
+                    FontSize="24"
+                    TextColor="White"
+                    BackgroundColor="{StaticResource Primary}"
+                    WidthRequest="60"
+                    HeightRequest="60"
+                    CornerRadius="30"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    Margin="20"
+                    Command="{Binding AddUserCommand}"/>
 
-                <!-- ── Section Header ── -->
-                <Grid ColumnDefinitions="*,Auto" Margin="0,0,0,14">
-                    <Label Grid.Column="0" Text="All Users"
-                           FontSize="18" FontAttributes="Bold" TextColor="#1A1A1A" />
-                    <Border Grid.Column="1"
-                            BackgroundColor="#FFF3E0"
-                            StrokeShape="RoundRectangle 8"
-                            Stroke="Transparent"
-                            Padding="12,6" VerticalOptions="End">
-                        <Label Text="See all" FontSize="12" TextColor="#FF8C00" FontAttributes="Bold" />
-                    </Border>
-                </Grid>
+		</Grid>
 
-                <!-- ── User List ── -->
-                <VerticalStackLayout Spacing="10">
-
-                    <!-- User 1 – Admin -->
-                    <Border BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="16,14">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
-                        </Border.Shadow>
-                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
-                            <Border Grid.Column="0" BackgroundColor="#EDE7F6"
-                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
-                                    WidthRequest="44" HeightRequest="44">
-                                <Label Text="EF" FontSize="14" FontAttributes="Bold"
-                                       TextColor="#7B2FBE"
-                                       HorizontalOptions="Center" VerticalOptions="Center" />
-                            </Border>
-                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
-                                <Label Text="Edge Flores" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
-                                <Label Text="Admin" FontSize="11" TextColor="#7B2FBE" FontAttributes="Bold" />
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
-                                <Border BackgroundColor="#E8F5E9"
-                                        StrokeShape="RoundRectangle 8" Stroke="Transparent"
-                                        Padding="10,5">
-                                    <Label Text="Active" FontSize="11" TextColor="#43A047" FontAttributes="Bold" />
-                                </Border>
-                                <HorizontalStackLayout Spacing="8" HorizontalOptions="End">
-                                    <Button Text="✏️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnEditUserClicked"/>
-                                    <Button Text="🗑️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnDeleteUserClicked"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Border>
-
-                    <!-- User 2 -->
-                    <Border BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="16,14">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
-                        </Border.Shadow>
-                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
-                            <Border Grid.Column="0" BackgroundColor="#E3F2FD"
-                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
-                                    WidthRequest="44" HeightRequest="44">
-                                <Label Text="ST" FontSize="14" FontAttributes="Bold"
-                                       TextColor="#1E88E5"
-                                       HorizontalOptions="Center" VerticalOptions="Center" />
-                            </Border>
-                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
-                                <Label Text="Samler Telebangco" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
-                                <Label Text="Cashier" FontSize="11" TextColor="#1E88E5" FontAttributes="Bold" />
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
-                                <Border BackgroundColor="#E8F5E9"
-                                        StrokeShape="RoundRectangle 8" Stroke="Transparent"
-                                        Padding="10,5">
-                                    <Label Text="Active" FontSize="11" TextColor="#43A047" FontAttributes="Bold" />
-                                </Border>
-                                <HorizontalStackLayout Spacing="8" HorizontalOptions="End">
-                                    <Button Text="✏️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnEditUserClicked"/>
-                                    <Button Text="🗑️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnDeleteUserClicked"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Border>
-
-                    <!-- User 3 -->
-                    <Border BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="16,14">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
-                        </Border.Shadow>
-                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
-                            <Border Grid.Column="0" BackgroundColor="#FCE4EC"
-                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
-                                    WidthRequest="44" HeightRequest="44">
-                                <Label Text="JC" FontSize="14" FontAttributes="Bold"
-                                       TextColor="#E91E63"
-                                       HorizontalOptions="Center" VerticalOptions="Center" />
-                            </Border>
-                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
-                                <Label Text="Jemar Caliguid" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
-                                <Label Text="Manager" FontSize="11" TextColor="#E91E63" FontAttributes="Bold" />
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
-                                <Border BackgroundColor="#FFF8E1"
-                                        StrokeShape="RoundRectangle 8" Stroke="Transparent"
-                                        Padding="10,5">
-                                    <Label Text="Pending" FontSize="11" TextColor="#FF8C00" FontAttributes="Bold" />
-                                </Border>
-                                <HorizontalStackLayout Spacing="8" HorizontalOptions="End">
-                                    <Button Text="✏️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnEditUserClicked"/>
-                                    <Button Text="🗑️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnDeleteUserClicked"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Border>
-
-                    <!-- User 4 -->
-                    <Border BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="16,14">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
-                        </Border.Shadow>
-                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
-                            <Border Grid.Column="0" BackgroundColor="#FFF3E0"
-                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
-                                    WidthRequest="44" HeightRequest="44">
-                                <Label Text="SO" FontSize="14" FontAttributes="Bold"
-                                       TextColor="#FF8C00"
-                                       HorizontalOptions="Center" VerticalOptions="Center" />
-                            </Border>
-                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
-                                <Label Text="Shaquille O'Neal" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
-                                <Label Text="Staff" FontSize="11" TextColor="#FF8C00" FontAttributes="Bold" />
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
-                                <Border BackgroundColor="#E8F5E9"
-                                        StrokeShape="RoundRectangle 8" Stroke="Transparent"
-                                        Padding="10,5">
-                                    <Label Text="Active" FontSize="11" TextColor="#43A047" FontAttributes="Bold" />
-                                </Border>
-                                <HorizontalStackLayout Spacing="8" HorizontalOptions="End">
-                                    <Button Text="✏️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnEditUserClicked"/>
-                                    <Button Text="🗑️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnDeleteUserClicked"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Border>
-
-                    <!-- User 5 -->
-                    <Border BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="16,14">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
-                        </Border.Shadow>
-                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
-                            <Border Grid.Column="0" BackgroundColor="#E8EAF6"
-                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
-                                    WidthRequest="44" HeightRequest="44">
-                                <Label Text="CJ" FontSize="14" FontAttributes="Bold"
-                                       TextColor="#3949AB"
-                                       HorizontalOptions="Center" VerticalOptions="Center" />
-                            </Border>
-                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
-                                <Label Text="Carl Johnson" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
-                                <Label Text="Cashier" FontSize="11" TextColor="#3949AB" FontAttributes="Bold" />
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
-                                <Border BackgroundColor="#FFEBEE"
-                                        StrokeShape="RoundRectangle 8" Stroke="Transparent"
-                                        Padding="10,5">
-                                    <Label Text="Inactive" FontSize="11" TextColor="#E53935" FontAttributes="Bold" />
-                                </Border>
-                                <HorizontalStackLayout Spacing="8" HorizontalOptions="End">
-                                    <Button Text="✏️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnEditUserClicked"/>
-                                    <Button Text="🗑️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnDeleteUserClicked"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Border>
-
-                    <!-- User 6 -->
-                    <Border BackgroundColor="White"
-                            StrokeShape="RoundRectangle 14"
-                            Stroke="#EBEBEB" StrokeThickness="1.5"
-                            Padding="16,14">
-                        <Border.Shadow>
-                            <Shadow Brush="#000000" Offset="0,2" Radius="10" Opacity="0.04" />
-                        </Border.Shadow>
-                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
-                            <Border Grid.Column="0" BackgroundColor="#E0F7FA"
-                                    StrokeShape="RoundRectangle 22" Stroke="Transparent"
-                                    WidthRequest="44" HeightRequest="44">
-                                <Label Text="RG" FontSize="14" FontAttributes="Bold"
-                                       TextColor="#00838F"
-                                       HorizontalOptions="Center" VerticalOptions="Center" />
-                            </Border>
-                            <VerticalStackLayout Grid.Column="1" Spacing="3" VerticalOptions="Center">
-                                <Label Text="Raymond Garcia" FontSize="14" FontAttributes="Bold" TextColor="#1A1A1A" />
-                                <Label Text="Staff" FontSize="11" TextColor="#00838F" FontAttributes="Bold" />
-                            </VerticalStackLayout>
-                            <VerticalStackLayout Grid.Column="2" Spacing="6" VerticalOptions="Center">
-                                <Border BackgroundColor="#FFEBEE"
-                                        StrokeShape="RoundRectangle 8" Stroke="Transparent"
-                                        Padding="10,5">
-                                    <Label Text="Inactive" FontSize="11" TextColor="#E53935" FontAttributes="Bold" />
-                                </Border>
-                                <HorizontalStackLayout Spacing="8" HorizontalOptions="End">
-                                    <Button Text="✏️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnEditUserClicked"/>
-                                    <Button Text="🗑️" FontSize="12"
-                                            BackgroundColor="Transparent" BorderColor="Transparent"
-                                            Padding="0" HeightRequest="28" WidthRequest="28"
-                                            Clicked="OnDeleteUserClicked"/>
-                                </HorizontalStackLayout>
-                            </VerticalStackLayout>
-                        </Grid>
-                    </Border>
-
-                </VerticalStackLayout>
-            </VerticalStackLayout>
-        </ScrollView>
-
-       
-
-    </Grid>
+	</Grid>
 </ContentPage>

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Point_of_Sales.MVVM.ViewModels
+namespace Point_of_Sales.MVVM.Models
 {
-    public class Login
+    internal class EditUser
     {
     }
 }

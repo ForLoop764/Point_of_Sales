@@ -7,10 +7,10 @@ public static class UserService
     private static readonly List<LoginModels> _users = new()
     {
         // Default admin account — always available
-        new LoginModels { ID = 1, Username = "admin", Password = "admin123" }
+        new LoginModels { Username = "admin", Password = "admin123" }
     };
 
-    private static int _nextId = 2;
+    
 
     /// <summary>
     /// Register a new user. Returns true if successful, false if username already exists.
@@ -24,7 +24,7 @@ public static class UserService
 
         _users.Add(new LoginModels
         {
-            ID = _nextId++,
+            
             Username = model.Username.Trim(),
             Password = model.Password
         });

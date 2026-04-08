@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:views="clr-namespace:Point_of_Sales.MVVM.Views"
+            x:Class="Point_of_Sales.MVVM.Views.AdminTabbedPage"
+            BarBackgroundColor="#141414"
+            BarTextColor="White"
+            SelectedTabColor="{StaticResource Primary}">
+
+    <!-- DASHBOARD TAB -->
+    <TabbedPage.Children>
+        <views:DashboardAdmin Title="Dashboard" IconImageSource="dashboard.png" />
+
+        <!-- USER MANAGEMENT TAB -->
+        <views:UserManagement Title="Users" IconImageSource="users.png" />
+
+        <!-- USER MOVIES TAB -->
+
+        <views:MoviePOSPage Title="Ticket" IconImageSource="profile.png" />
+        
+        <!-- USER SALES TAB -->
+
+        <views:SalesReportPage Title="Sale" IconImageSource="profile.png" />
+
+        <!-- ADMIN PROFILE TAB -->
+        <views:AdminProfilePage Title="Profile" IconImageSource="profile.png" />
+
+    </TabbedPage.Children>
+
+</TabbedPage>

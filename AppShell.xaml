@@ -4,11 +4,44 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Point_of_Sales"
-    Title="Point_of_Sales">
+    xmlns:views="clr-namespace:Point_of_Sales.MVVM.Views"
+    Shell.FlyoutBehavior="Flyout"
+    FlyoutBackgroundColor="{StaticResource Background}">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Grid" x:Key="FlyoutItemLayoutStyle">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal" />
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource CardLight}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout Padding="30,60,30,30" BackgroundColor="{StaticResource CardDark}">
+            <Image Source="logo.png" HeightRequest="50" HorizontalOptions="Start" Aspect="AspectFit" />
+            <Label Text="POS PREMIUM" TextColor="{StaticResource Primary}" FontSize="18" FontAttributes="Bold" Margin="0,15,0,0"/>
+            <Label Text="Administrator" TextColor="{StaticResource TextSub}" FontSize="12"/>
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="DASHBOARD">
+        <ShellContent ContentTemplate="{DataTemplate views:DashboardAdmin}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="CREATE ACCOUNT">
+        <ShellContent ContentTemplate="{DataTemplate views:RegisterPage}" />
+    </FlyoutItem>
 
 </Shell>
+    

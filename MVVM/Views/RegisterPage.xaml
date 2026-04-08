@@ -2,15 +2,15 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Point_of_Sales.MVVM.Views.RegisterPage"
-             BackgroundColor="#F7F8FA">
+             BackgroundColor="{StaticResource Background}"
+             Shell.NavBarIsVisible="False">
 
     <Grid>
-
         <ScrollView VerticalScrollBarVisibility="Never">
-            <VerticalStackLayout Padding="32,52,32,40" Spacing="0" VerticalOptions="Start">
+            <VerticalStackLayout Padding="32,40,32,40" Spacing="0" VerticalOptions="Start">
 
                 <!-- Logo + Brand -->
-                <VerticalStackLayout Spacing="4" Margin="0,0,0,28" HorizontalOptions="Start">
+                <VerticalStackLayout Spacing="4" Margin="0,0,0,20" HorizontalOptions="Start">
                     <Image Source="logo.png"
                            HeightRequest="64" WidthRequest="64"
                            HorizontalOptions="Start"
@@ -19,44 +19,45 @@
                     <Label FontSize="34" FontAttributes="Bold" HorizontalOptions="Start">
                         <Label.FormattedText>
                             <FormattedString>
-                                <Span Text="Create " TextColor="#1A1A1A"
+                                <Span Text="Create " TextColor="{StaticResource TextMain}"
                                       FontSize="34" FontAttributes="Bold"/>
-                                <Span Text="Account" TextColor="#FF8C00"
+                                <Span Text="Account" TextColor="{StaticResource Primary}"
                                       FontSize="34" FontAttributes="Bold"/>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
                     <Label Text="Set up your new POS account"
-                           FontSize="13" TextColor="#9E9E9E"
+                           FontSize="13" TextColor="{StaticResource TextSub}"
                            HorizontalOptions="Start" Margin="0,4,0,0" />
                 </VerticalStackLayout>
 
                 <!-- Input Card -->
-                <Border BackgroundColor="White"
-                        StrokeShape="RoundRectangle 20"
-                        Stroke="#EBEBEB" StrokeThickness="1.5"
+                <Border BackgroundColor="{StaticResource CardDark}"
+                        StrokeShape="RoundRectangle 8"
+                        Stroke="{StaticResource BorderGray}" StrokeThickness="1.5"
                         Padding="24,28" Margin="0,0,0,16">
                     <Border.Shadow>
-                        <Shadow Brush="#000000" Offset="0,4" Radius="20" Opacity="0.07" />
+                        <Shadow Brush="Black" Offset="0,4" Radius="10" Opacity="0.5" />
                     </Border.Shadow>
-                    <VerticalStackLayout Spacing="20">
+
+                    <VerticalStackLayout Spacing="18">
 
                         <!-- Username -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="USERNAME" FontSize="Caption"
-                                   CharacterSpacing="2" TextColor="Black" />
-                            <Border BackgroundColor="#F7F8FA"
-                                    StrokeShape="RoundRectangle 12"
-                                    Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
+                            <Label Text="USERNAME" FontSize="11"
+                                   CharacterSpacing="2" TextColor="{StaticResource TextMain}" />
+                            <Border BackgroundColor="{StaticResource CardLight}"
+                                    StrokeShape="RoundRectangle 4"
+                                    Stroke="Transparent" Padding="16,0">
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="👤" FontSize="16"
-                                           VerticalOptions="Center" TextColor="#BDBDBD" />
+                                           VerticalOptions="Center" TextColor="{StaticResource TextSub}" />
                                     <Entry Grid.Column="1"
                                            x:Name="UsernameEntry"
                                            Text="{Binding Username}"
                                            Placeholder="Choose a username"
-                                           PlaceholderColor="#BDBDBD"
-                                           TextColor="#1A1A1A"
+                                           PlaceholderColor="{StaticResource TextSub}"
+                                           TextColor="White"
                                            BackgroundColor="Transparent"
                                            HeightRequest="52" FontSize="15" />
                                 </Grid>
@@ -65,21 +66,21 @@
 
                         <!-- Email -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="EMAIL ADDRESS" FontSize="Caption"
-                                   CharacterSpacing="2" TextColor="Black" />
-                            <Border BackgroundColor="#F7F8FA"
-                                    StrokeShape="RoundRectangle 12"
-                                    Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
+                            <Label Text="EMAIL ADDRESS" FontSize="11"
+                                   CharacterSpacing="2" TextColor="{StaticResource TextMain}" />
+                            <Border BackgroundColor="{StaticResource CardLight}"
+                                    StrokeShape="RoundRectangle 4"
+                                    Stroke="Transparent" Padding="16,0">
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="✉️" FontSize="16"
-                                           VerticalOptions="Center" TextColor="#BDBDBD" />
+                                           VerticalOptions="Center" TextColor="{StaticResource TextSub}" />
                                     <Entry Grid.Column="1"
                                            x:Name="EmailEntry"
                                            Text="{Binding Email}"
                                            Placeholder="Enter your email"
-                                           PlaceholderColor="#BDBDBD"
+                                           PlaceholderColor="{StaticResource TextSub}"
                                            Keyboard="Email"
-                                           TextColor="#1A1A1A"
+                                           TextColor="White"
                                            BackgroundColor="Transparent"
                                            HeightRequest="52" FontSize="15" />
                                 </Grid>
@@ -88,21 +89,22 @@
 
                         <!-- Password -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="PASSWORD" FontSize="Caption"
-                                   CharacterSpacing="2" TextColor="Black" />
-                            <Border BackgroundColor="#F7F8FA"
-                                    StrokeShape="RoundRectangle 12"
-                                    Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
+                            <Label Text="PASSWORD" FontSize="11"
+                                   CharacterSpacing="2" TextColor="{StaticResource TextMain}" />
+                            <Border BackgroundColor="{StaticResource CardLight}"
+                                    StrokeShape="RoundRectangle 4"
+                                    Stroke="Transparent" Padding="16,0">
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="🔒" FontSize="16"
-                                           VerticalOptions="Center" TextColor="#BDBDBD" />
+                                           VerticalOptions="Center" TextColor="{StaticResource TextSub}" />
                                     <Entry Grid.Column="1"
                                            x:Name="PasswordEntry"
                                            Text="{Binding Password}"
                                            Placeholder="Create a password"
-                                           PlaceholderColor="#BDBDBD"
+                                           PlaceholderColor="{StaticResource TextSub}"
                                            IsPassword="{Binding IsPasswordHidden}"
-                                           TextColor="#1A1A1A"
+                                           Keyboard="Plain"
+                                           TextColor="White"
                                            BackgroundColor="Transparent"
                                            HeightRequest="52" FontSize="15" />
                                 </Grid>
@@ -111,83 +113,77 @@
 
                         <!-- Confirm Password -->
                         <VerticalStackLayout Spacing="8">
-                            <Label Text="CONFIRM PASSWORD" FontSize="Caption"
-                                   CharacterSpacing="2" TextColor="Black" />
-                            <Border BackgroundColor="#F7F8FA"
-                                    StrokeShape="RoundRectangle 12"
-                                    Stroke="#E0E0E0" StrokeThickness="1.5" Padding="16,0">
+                            <Label Text="CONFIRM PASSWORD" FontSize="11"
+                                   CharacterSpacing="2" TextColor="{StaticResource TextMain}" />
+                            <Border BackgroundColor="{StaticResource CardLight}"
+                                    StrokeShape="RoundRectangle 4"
+                                    Stroke="Transparent" Padding="16,0">
                                 <Grid ColumnDefinitions="Auto,*" ColumnSpacing="12">
                                     <Label Grid.Column="0" Text="🔐" FontSize="16"
-                                           VerticalOptions="Center" TextColor="#BDBDBD" />
+                                           VerticalOptions="Center" TextColor="{StaticResource TextSub}" />
                                     <Entry Grid.Column="1"
                                            x:Name="ConfirmPasswordEntry"
                                            Text="{Binding ConfirmPassword}"
                                            Placeholder="Re-enter your password"
-                                           PlaceholderColor="#BDBDBD"
+                                           PlaceholderColor="{StaticResource TextSub}"
                                            IsPassword="{Binding IsPasswordHidden}"
-                                           TextColor="#1A1A1A"
+                                           Keyboard="Plain"
+                                           TextColor="White"
                                            BackgroundColor="Transparent"
                                            HeightRequest="52" FontSize="15" />
                                 </Grid>
                             </Border>
 
-                            <!-- Show Password Checkbox -->
                             <HorizontalStackLayout Spacing="8" Margin="4,4,0,0">
-                                <CheckBox Color="#408A71"
+                                <CheckBox Color="{StaticResource Primary}"
                                           CheckedChanged="OnShowPasswordCheckedChanged" />
                                 <Label Text="Show Password"
-                                       FontSize="13" TextColor="#9E9E9E"
+                                       FontSize="13" TextColor="{StaticResource TextSub}"
                                        VerticalOptions="Center" />
                             </HorizontalStackLayout>
-
                         </VerticalStackLayout>
 
+                        <!-- Create Account -->
+                        <Button Text="CREATE ACCOUNT"
+                                 Command="{Binding RegisterCommand}"
+                                 BackgroundColor="{StaticResource Primary}"
+                                 TextColor="White"
+                                 FontAttributes="Bold"
+                                 FontSize="15"
+                                 CharacterSpacing="1"
+                                 CornerRadius="4"
+                                 HeightRequest="56"
+                                 Margin="0,0,0,12" />           
                     </VerticalStackLayout>
                 </Border>
 
-                <!-- Register Button -->
-                <Button Text="CREATE ACCOUNT"
-                        Command="{Binding RegisterCommand}"
-                        BackgroundColor="#408A71"
-                        TextColor="White"
-                        FontAttributes="Bold"
-                        FontSize="15"
-                        CharacterSpacing="1"
-                        CornerRadius="14"
-                        HeightRequest="56"
-                        Margin="0,0,0,12">
-                    <Button.Shadow>
-                        <Shadow Brush="#7B2FBE" Offset="0,6" Radius="16" Opacity="0.30" />
-                    </Button.Shadow>
-                </Button>
+               
 
-                <!-- Divider -->
                 <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="12"
-                      Margin="0,20,0,20" VerticalOptions="Center">
+                      Margin="0,10,0,15" VerticalOptions="Center">
                     <BoxView Grid.Column="0" HeightRequest="1"
-                             Color="#E0E0E0" VerticalOptions="Center" />
+                             Color="{StaticResource BorderGray}" VerticalOptions="Center" />
                     <Label Grid.Column="1" Text="OR" FontSize="11"
-                           CharacterSpacing="2" TextColor="#BDBDBD"
+                           CharacterSpacing="2" TextColor="{StaticResource TextSub}"
                            VerticalOptions="Center" />
                     <BoxView Grid.Column="2" HeightRequest="1"
-                             Color="#E0E0E0" VerticalOptions="Center" />
+                             Color="{StaticResource BorderGray}" VerticalOptions="Center" />
                 </Grid>
 
-                <!-- Sign In -->
                 <HorizontalStackLayout HorizontalOptions="Center"
-                       Spacing="6" Margin="0,0,0,20">
+                                       Spacing="6" Margin="0,0,0,20">
                     <Label Text="Already have an account?"
-                           FontSize="13" TextColor="#9E9E9E"
+                           FontSize="13" TextColor="{StaticResource TextSub}"
                            VerticalOptions="Center" />
-                    
+
+                    <!-- Sign I -->
                     <Button Text="SIGN IN"
                             Command="{Binding GoToLoginCommand}"
                             FontSize="13"
                             FontAttributes="Bold"
-                            TextColor="#FF8C00"
+                            TextColor="{StaticResource Primary}"
                             CharacterSpacing="1"
                             BackgroundColor="Transparent"/>
-                    
                 </HorizontalStackLayout>
 
             </VerticalStackLayout>

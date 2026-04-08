@@ -1,49 +1,39 @@
-using Point_of_Sales.MVVM.Services;
+using Point_of_Sales.MVVM.ViewModels;
+using Point_of_Sales.MVVM.Views;
 
 namespace Point_of_Sales.MVVM.Views;
 
 public partial class LoginPage : ContentPage
 {
+    private readonly LoginViewModels _viewModel;
+
     public LoginPage()
     {
         InitializeComponent();
+
+        _viewModel = new LoginViewModels();
+        BindingContext = _viewModel;
+
+        // Show alert
+        _viewModel.ShowAlert = (title, message, cancel) =>
+            DisplayAlert(title, message, cancel);
+
+        // Navigate to Register
+        _viewModel.GoToRegister = () =>
+            Application.Current!.Windows[0].Page = new RegisterPage();
+
+        // Navigate to Forgot Password
+        _viewModel.GoToForgot = () =>
+            Application.Current!.Windows[0].Page = new ForgotPasswordPage();
+
+        // ?Navigate to TABBED ADMIN DASHBOARD
+        _viewModel.GoToDashboard = () =>
+            Application.Current!.Windows[0].Page = new AdminTabbedPage();
     }
 
-    //  Login Button 
-    private async void Button_Clicked(object sender, EventArgs e)
+    // Show Password Toggle
+    private void OnShowPasswordCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        var username = UsernameEntry.Text?.Trim();
-        var password = PasswordEntry.Text;
-
-        if (string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
-        {
-            await DisplayAlert("Login Failed", "Please enter your username and password.", "OK");
-            return;
-        }
-
-        var user = UserService.ValidateLogin(username, password);
-
-        if (user != null)
-        {
-            Application.Current.MainPage = new UserManagement();
-
-        }
-        else
-        {
-            await DisplayAlert("Login Failed",
-                "Incorrect username or password. Please try again.", "OK");
-        }
-    }
-
-    // Forgot Password Button 
-    private async void Button_Clicked_2(object sender, EventArgs e)
-    {
-        Application.Current.MainPage = new ForgotPasswordPage();
-    }
-
-    //  Sign Up Button 
-    private void Button_Clicked_1(object sender, EventArgs e)
-    {
-        Application.Current.MainPage = new RegisterPage();
+        _viewModel.IsPasswordVisible = e.Value;
     }
 }
